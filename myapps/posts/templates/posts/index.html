@@ -30,15 +30,15 @@
                                 {% endif %}
                             </li>
                             <li class="list-group-item py-2 bg-light mb-4 text-justify">
-                                <p class="lead">
-                                    {{ post.body|slice:":200" }}
+                                <article class="lead text-justify">
+                                    {{ post.body|slice:":75"|safe }}
                                     <i>
                                         ...
                                         <a href="{{ post.get_absolute_url }}" class="text-decoration-none text-danger">
                                             (Read More)
                                         </a>
                                     </i>
-                                </p>
+                                </article>
                             </li>
                         {% empty %}
                             <h3 class="text-center">No posts!</h3>

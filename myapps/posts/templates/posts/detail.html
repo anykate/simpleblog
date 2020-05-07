@@ -29,7 +29,7 @@
     <section class="text-center lead bg-warning">
         <a href="{% url 'posts:index' %}" class="text-decoration-none">Back</a>
     </section>
-    <p class="lead text-justify p-3">
-        {{ post.body }}
-    </p>
+    <article class="lead text-justify p-3">
+        {{ post.body|safe }}
+    </article>
 {% endblock %}
