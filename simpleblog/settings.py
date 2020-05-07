@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     # My apps
     'myapps.posts.apps.PostsConfig',
+    'myapps.members.apps.MembersConfig',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,5 @@ STATICFILES_DIRS = [
 ]
 AUTH_PASSWORD_VALIDATORS = []
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_REDIRECT_URL = 'posts:index'
+LOGOUT_REDIRECT_URL = 'login'
