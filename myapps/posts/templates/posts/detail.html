@@ -1,0 +1,26 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Posts - {{ post.title }}{% endblock %}
+
+{% block content %}
+    <section class="p-3 bg-info text-white">
+        <div class="lead">
+            <section>
+                {{ post.title }}
+            </section>
+            <small>
+                Author: {{ post.author }}
+                <span class="float-right">
+                    <i>{{ post.created_at }}</i>
+                </span>
+            </small>
+        </div>
+    </section>
+    <section class="text-center lead bg-warning">
+        <a href="{% url 'posts:index' %}" class="text-decoration-none">Back</a>
+    </section>
+    <p class="lead text-justify p-3">
+        {{ post.body }}
+    </p>
+{% endblock %}

@@ -5,6 +5,27 @@
 
 {% block content %}
     <div class="container">
-        <h1>Posts</h1>
+        <h1 class="text-center">Posts</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card card-body bg-light">
+                    <ul class="list-group list-group-flush">
+                        {% for post in object_list %}
+                            <li class="list-group-item p-2 bg-light">
+                                <a class="text-decoration-none"
+                                   href="{{ post.get_absolute_url }}">
+                                    {{ post.title }}
+                                </a>
+                            </li>
+                        {% empty %}
+                            <h3 class="text-center">No posts!</h3>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- Future Expansion
+                <div class="col-md-2"></div>
+            -->
+        </div>
     </div>
 {% endblock %}
