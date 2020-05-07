@@ -5,7 +5,7 @@
 
 {% block content %}
     <div class="container">
-        <h1 class="text-center">Posts</h1>
+        <h1 class="text-center">Posts (<small><i>Count: {{ object_list.count|stringformat:"03d" }}</i></small>)</h1>
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card card-body bg-light">
