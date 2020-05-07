@@ -1,5 +1,5 @@
 # from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Post
 
 
@@ -23,4 +23,11 @@ class PostsCreateView(CreateView):
     model = Post
     template_name = 'posts/create.html'
     fields = '__all__'
+    pk_url_kwarg = 'post_id'
+
+
+class PostsUpdateView(UpdateView):
+    model = Post
+    template_name = 'posts/update.html'
+    fields = ['title', 'body', ]
     pk_url_kwarg = 'post_id'

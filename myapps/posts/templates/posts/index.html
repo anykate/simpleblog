@@ -16,6 +16,12 @@
                                    href="{{ post.get_absolute_url }}">
                                     {{ post.title }}
                                 </a>
+                                <span class="float-right">
+                                    <a class="text-decoration-none"
+                                       href="{% url 'posts:update' post_id=post.id %}">
+                                        <i class="fas fa-edit" aria-hidden="true"></i>
+                                    </a>
+                                </span>
                             </li>
                         {% empty %}
                             <h3 class="text-center">No posts!</h3>

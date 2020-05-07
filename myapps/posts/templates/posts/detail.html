@@ -8,6 +8,9 @@
         <div class="lead">
             <section>
                 {{ post.title }}
+                <a class="text-decoration-none ml-1" href="{% url 'posts:update' post_id=post.id %}">
+                    <i class="fas fa-edit" aria-hidden="true"></i>
+                </a>
             </section>
             <small>
                 Author: {{ post.author }}
