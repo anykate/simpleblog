@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # Third Party apps
     'django_extensions',
+    'crispy_forms',
 
     # My apps
     'myapps.posts.apps.PostsConfig',
@@ -128,3 +129,4 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 AUTH_PASSWORD_VALIDATORS = []
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

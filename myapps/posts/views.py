@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+# from django.shortcuts import render
+from django.views.generic import ListView, DetailView, CreateView
 from .models import Post
 
 
@@ -17,3 +17,10 @@ class PostsDetailView(DetailView):
     model = Post
     pk_url_kwarg = 'post_id'
     template_name = 'posts/detail.html'
+
+
+class PostsCreateView(CreateView):
+    model = Post
+    template_name = 'posts/create.html'
+    fields = '__all__'
+    pk_url_kwarg = 'post_id'
