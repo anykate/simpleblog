@@ -1,0 +1,36 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Categories - {{ category.title }}{% endblock %}
+
+{% block content %}
+    <section class="p-3 bg-info text-white">
+        <div class="lead">
+            <section>
+                {{ category.name }}
+                {% if request.user.is_authenticated %}
+                    <a class="text-decoration-none ml-1" href="{% url 'posts:categories_update' cat_id=category.id %}">
+                        <i class="fas fa-edit" aria-hidden="true"></i>
+                    </a>
+                    <a class="text-decoration-none"
+                       href="{% url 'posts:categories_delete' cat_id=category.id %}">
+                        <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                    </a>
+                {% endif %}
+            </section>
+            <small>
+                {% if request.user.is_authenticated %}
+                    Last Updated by: {{ request.user }}
+                {% else %}
+                    Last Updated by: Unknown
+                {% endif %}
+                <span class="float-right">
+                    <i>{{ category.created_at }}</i>
+                </span>
+            </small>
+        </div>
+    </section>
+    <section class="text-center lead bg-warning">
+        <a href="{% url 'posts:categories_index' %}" class="text-decoration-none">Back</a>
+    </section>
+{% endblock %}
