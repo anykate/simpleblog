@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Delete Post{% endblock %}
+
+{% block content %}
+    <h1 class="text-center">Delete Post</h1>
+    <section>
+        <h3 class="display-4 text-center text-danger mt-5">Confirm delete post with title: </h3>
+        <h1 class="display-3 text-center mt-5">
+            {{ post.title }}
+            <span class="ml-2">???</span>
+            <form method="POST">
+                {% csrf_token %}
+                <button class="btn btn-outline-primary w-25" type="submit">Yes</button>
+                <input type="button" class="btn btn-outline-primary w-25"
+                       onclick="window.location.replace('{% url "posts:index" %}')" value="Cancel"/>
+            </form>
+        </h1>
+    </section>
+{% endblock %}

@@ -1,5 +1,5 @@
-# from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post
 
 
@@ -31,3 +31,10 @@ class PostsUpdateView(UpdateView):
     template_name = 'posts/update.html'
     fields = ['title', 'body', ]
     pk_url_kwarg = 'post_id'
+
+
+class PostsDeleteView(DeleteView):
+    model = Post
+    template_name = 'posts/delete.html'
+    pk_url_kwarg = 'post_id'
+    success_url = reverse_lazy('posts:index')

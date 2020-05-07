@@ -17,9 +17,13 @@
                                     {{ post.title }}
                                 </a>
                                 <span class="float-right">
-                                    <a class="text-decoration-none"
+                                    <a class="text-decoration-none mr-1"
                                        href="{% url 'posts:update' post_id=post.id %}">
                                         <i class="fas fa-edit" aria-hidden="true"></i>
+                                    </a>
+                                    <a class="text-decoration-none"
+                                       href="{% url 'posts:delete' post_id=post.id %}">
+                                        <i class="fas fa-trash-alt" aria-hidden="true"></i>
                                     </a>
                                 </span>
                             </li>
