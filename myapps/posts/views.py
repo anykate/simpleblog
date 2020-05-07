@@ -1,5 +1,6 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 
 
@@ -19,22 +20,25 @@ class PostsDetailView(DetailView):
     template_name = 'posts/detail.html'
 
 
-class PostsCreateView(CreateView):
+class PostsCreateView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'posts/create.html'
     fields = '__all__'
     pk_url_kwarg = 'post_id'
+    login_url = 'login'
 
 
-class PostsUpdateView(UpdateView):
+class PostsUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     template_name = 'posts/update.html'
     fields = ['title', 'body', ]
     pk_url_kwarg = 'post_id'
+    login_url = 'login'
 
 
-class PostsDeleteView(DeleteView):
+class PostsDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'posts/delete.html'
     pk_url_kwarg = 'post_id'
     success_url = reverse_lazy('posts:index')
+    login_url = 'login'
