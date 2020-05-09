@@ -76,3 +76,21 @@ class CategoriesDeleteView(LoginRequiredMixin, DeleteView):
     pk_url_kwarg = 'cat_id'
     success_url = reverse_lazy('posts:categories_index')
     login_url = 'login'
+
+
+class CategoriesPostsView(DetailView):
+    model = Category
+    template_name = 'posts/categories/category_posts.html'
+    pk_url_kwarg = 'cat_id'
+    context_object_name = 'object_list'
+
+    def get_object(self, **kwargs):
+        return Post.objects.filter(category_id=self.kwargs[self.pk_url_kwarg])
+
+    def get_context_data(self, **kwargs):
+        context = super(CategoriesPostsView, self).get_context_data(**kwargs)
+        try:
+            context['category'] = Category.objects.get(id=self.kwargs[self.pk_url_kwarg])
+        except Category.DoesNotExist:
+            context = None
+        return context

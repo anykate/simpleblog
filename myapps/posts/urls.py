@@ -13,6 +13,7 @@ urlpatterns = [
 
     path('categories/', views.CategoriesIndexView.as_view(), name='categories_index'),
     path('categories/<int:cat_id>/', views.CategoriesDetailView.as_view(), name='categories_detail'),
+    path('categories/<int:cat_id>/posts/', views.CategoriesPostsView.as_view(), name='categories_posts'),
     path('categories/new/', views.CategoriesCreateView.as_view(), name='categories_create'),
     path('categories/edit/<int:cat_id>/', views.CategoriesUpdateView.as_view(), name='categories_update'),
     path('categories/delete/<int:cat_id>/', views.CategoriesDeleteView.as_view(), name='categories_delete'),

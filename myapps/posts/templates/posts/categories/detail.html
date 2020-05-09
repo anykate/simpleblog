@@ -1,10 +1,10 @@
 {% extends '_base.html' %}
 {% load static %}
 
-{% block title %}Categories - {{ category.title }}{% endblock %}
+{% block title %}Categories - {{ category.name|title }}{% endblock %}
 
 {% block content %}
-    <section class="p-3 bg-info text-white">
+    <section class="p-3 bg-warning text-white">
         <div class="lead">
             <section>
                 {{ category.name }}
@@ -29,6 +29,11 @@
                 </span>
             </small>
         </div>
+        <p class="lead mt-2 bg-light text-white text-center display-4">
+            <a href="{% url 'posts:categories_posts' cat_id=category.id %}" class="text-decoration-none">
+                Related Posts
+            </a>
+        </p>
     </section>
     <section class="text-center lead bg-warning">
         <a href="{% url 'posts:categories_index' %}" class="text-decoration-none">Back</a>
