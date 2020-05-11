@@ -23,9 +23,13 @@ class PostsDetailView(DetailView):
 class PostsCreateView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'posts/create.html'
-    fields = '__all__'
-    pk_url_kwarg = 'post_id'
+    fields = ['category', 'title', 'body', ]
     login_url = 'login'
+
+    def form_valid(self, form):
+        new_post = form.save(commit=False)
+        new_post.author = self.request.user
+        return super(PostsCreateView, self).form_valid(form)
 
 
 class PostsUpdateView(LoginRequiredMixin, UpdateView):
@@ -35,6 +39,13 @@ class PostsUpdateView(LoginRequiredMixin, UpdateView):
     pk_url_kwarg = 'post_id'
     login_url = 'login'
 
+    def get_context_data(self, **kwargs):
+        this_post = Post.objects.get(id=self.kwargs[self.pk_url_kwarg])
+        allowed_to_edit = True if self.request.user.id == this_post.author_id else False
+        context = super(PostsUpdateView, self).get_context_data(**kwargs)
+        context['allowed_to_edit'] = allowed_to_edit
+        return context
+
 
 class PostsDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
@@ -42,6 +53,13 @@ class PostsDeleteView(LoginRequiredMixin, DeleteView):
     pk_url_kwarg = 'post_id'
     success_url = reverse_lazy('posts:index')
     login_url = 'login'
+
+    def get_context_data(self, **kwargs):
+        this_post = Post.objects.get(id=self.kwargs[self.pk_url_kwarg])
+        allowed_to_delete = True if self.request.user.id == this_post.author_id else False
+        context = super(PostsDeleteView, self).get_context_data(**kwargs)
+        context['allowed_to_delete'] = allowed_to_delete
+        return context
 
 
 class CategoriesIndexView(ListView):

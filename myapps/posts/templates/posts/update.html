@@ -5,14 +5,18 @@
 {% block title %}Edit Post{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1 class="text-center">Update Post</h1>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <button class="btn btn-outline-primary">
-                Update Post
-            </button>
-        </form>
-    </div>
+    {% if allowed_to_edit %}
+        <div class="container">
+            <h1 class="text-center">Update Post</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn btn-outline-primary">
+                    Update Post
+                </button>
+            </form>
+        </div>
+    {% else %}
+        <h1 class="text-center text-danger display-3 mt-3">You cannot edit this post!</h1>
+    {% endif %}
 {% endblock %}

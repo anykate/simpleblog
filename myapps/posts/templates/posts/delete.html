@@ -5,18 +5,22 @@
 {% block title %}Delete Post{% endblock %}
 
 {% block content %}
-    <h1 class="text-center">Delete Post</h1>
-    <section>
-        <h3 class="display-4 text-center text-danger mt-5">Confirm delete post with title: </h3>
-        <h1 class="display-3 text-center mt-5">
-            {{ post.title }}
-            <span class="ml-2">???</span>
-            <form method="POST">
-                {% csrf_token %}
-                <button class="btn btn-outline-primary w-25" type="submit">Yes</button>
-                <input type="button" class="btn btn-outline-primary w-25"
-                       onclick="window.location.replace('{% url "posts:index" %}')" value="Cancel"/>
-            </form>
-        </h1>
-    </section>
+    {% if allowed_to_delete %}
+        <h1 class="text-center">Delete Post</h1>
+        <section>
+            <h3 class="display-4 text-center text-danger mt-5">Confirm delete post with title: </h3>
+            <h1 class="display-3 text-center mt-5">
+                {{ post.title }}
+                <span class="ml-2">???</span>
+                <form method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-primary w-25" type="submit">Yes</button>
+                    <input type="button" class="btn btn-outline-primary w-25"
+                           onclick="window.location.replace('{% url "posts:index" %}')" value="Cancel"/>
+                </form>
+            </h1>
+        </section>
+    {% else %}
+        <h1 class="text-center text-danger display-3 mt-3">You cannot delete this post!</h1>
+    {% endif %}
 {% endblock %}
