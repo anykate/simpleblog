@@ -6,17 +6,23 @@
 
 {% block content %}
     <div class="container">
-        <h1 class="text-center">Register</h1>
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="form-group">
-                    <form action="" method="POST">
-                        {% csrf_token %}
-                        {{ form | crispy }}
-                        <button class="btn btn-outline-primary" type="submit">Register</button>
-                    </form>
+        {% if request.user.is_authenticated %}
+            <h1 class="text-center text-danger display-3 mt-2">
+                Logged in users need not register again!!
+            </h1>
+        {% else %}
+            <h1 class="text-center">Register</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            {{ form | crispy }}
+                            <button class="btn btn-outline-primary" type="submit">Register</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
     </div>
 {% endblock %}
